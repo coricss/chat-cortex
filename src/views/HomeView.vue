@@ -91,8 +91,7 @@ const fetchAnswer = async () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Referrer-Policy': 'no-referrer'
+          'Access-Control-Allow-Origin': 'https://chat-cortex.vercel.app'
         },
         body: JSON.stringify({
           question: question.value,
