@@ -89,6 +89,9 @@ const fetchAnswer = async () => {
       
       const res = await fetch('https://chat-cortex-server.vercel.app/api', {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({ question: question.value })
       })
 
