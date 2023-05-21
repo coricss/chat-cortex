@@ -2,7 +2,7 @@
   "name": "chat-cortex",
   "version": "0.0.0",
   "private": true,
-  "proxy": "http://localhost:3000",
+  "proxy": "https://chat-cortex-server.vercel.app",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
