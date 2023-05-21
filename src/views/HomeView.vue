@@ -87,16 +87,13 @@ const fetchAnswer = async () => {
       const btn = document.querySelector('.btn-send');
       btn.disabled = true;
       
-      // const res = await fetch('https://chat-cortex-server.vercel.app/api', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Access-Control-Allow-Origin': '*'
-      //   },
-      //   body: JSON.stringify({ question: question.value })
-      // })
-
-      const res = await fetch('https://chat-cortex-server.vercel.app/api/?question=' + question.value);
+      const res = await fetch('https://chat-cortex-server.vercel.app/api', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ question: question.value })
+      })
 
       const data = await res.json();
       const parsedData = data.bot.trim();
