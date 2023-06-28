@@ -66,6 +66,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useToast } from "vue-toastification";
+import axios from 'axios';
 
 const toast = useToast();
 
@@ -87,16 +88,11 @@ const fetchAnswer = async () => {
       const btn = document.querySelector('.btn-send');
       btn.disabled = true;
       
-      const res = await fetch('https://chat-cortex-server.vercel.app/api', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ question: question.value })
-      })
+      const res = await axios.post('api', {
+        question: question.value
+      });
 
-      const data = await res.json();
-      const parsedData = data.bot.trim();
+      const parsedData = res.data.bot.trim();
 
       answer.value = parsedData;
     
