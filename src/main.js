@@ -5,8 +5,6 @@ import router from './router';
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
-import VueWriter from "vue-writer";
-
 import './assets/main.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -35,6 +33,5 @@ app.use(Toast, {
   icon: true,
   rtl: false
 });
-app.use(VueWriter);
 
 app.mount('#app')
