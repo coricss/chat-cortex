@@ -221,6 +221,47 @@ const copyAnswer = () => {
   height: 20px;
 }
 
+.chatbox-answer-box {
+
+  overflow-y: auto;
+}
+
+@media screen and (max-width: 1440px) {
+  .chatbox-answer-box-item-content ::v-deep(div) {
+   font-size: 100% !important;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .chatbox-answer-box-item-content ::v-deep(div) {
+   font-size: 15px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .chatbox-answer-box-item-content ::v-deep(div) {
+    font-size: 15px !important;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .chatbox-answer-box-item-content ::v-deep(div) {
+    font-size: 12px !important;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .chatbox-answer-box-item-content ::v-deep(div) {
+   font-size: 12px !important;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .chatbox-answer-box-item-content ::v-deep(div) {
+   font-size: 10px !important;
+  }
+}
+
 .made-with-heart {
   top: 100%;
   left: 0;
