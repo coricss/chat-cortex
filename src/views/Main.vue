@@ -35,17 +35,9 @@
           <div class="chatbox-answer-box">
             <div class="chatbox-answer-box-item">
               <div class="chatbox-answer-box-item-content p-3">
-                <p class="chatbox-answer-box-item-content-text m-0" id="text_answer">
-                  <VueWriter 
-                    :array="[answer]"
-                    :caret="cursor"
-                    :typeSpeed="40"
-                    :iterations="1"
-                  />
-                </p>
+                <Markdown :answer="answer" />
               </div>
               <div class="chatbox-answer-box-item-icon" @click="copyAnswer">
-                <small>Copy</small>
                 <img src="@/assets/copy.svg" alt="copy" />
               </div> 
             </div>
@@ -67,6 +59,8 @@
 import { ref } from 'vue';
 import { useToast } from "vue-toastification";
 import axios from 'axios';
+
+import Markdown from './Markdown.vue';
 
 const toast = useToast();
 
@@ -91,11 +85,9 @@ const fetchAnswer = async () => {
       const res = await axios.post('api', {
         question: question.value
       });
-
-      const parsedData = res.data.bot.trim();
-
-      answer.value = parsedData;
-    
+      
+      answer.value = res.data;
+      
     } catch (error) {
       if (error) {
         toast.error("Something went wrong!");
@@ -134,15 +126,15 @@ const copyAnswer = () => {
 .chatbox {
   resize: none;
   color: #fff !important;
-  background-color: #242424 !important;
-  border: 1px solid #424242 !important;
+  background-color: #141414 !important;
+  border: 1px solid #68686860 !important;
   border-radius: 4px !important;
   outline: none !important;
   box-shadow: none !important;
 }
 
 .btn-send {
-  border: 1px solid #424242 !important;
+  border: 1px solid #68686860 !important;
   outline: none !important;
   color: #fff !important;
   box-shadow: none !important;
@@ -155,15 +147,14 @@ const copyAnswer = () => {
 }
 
 .chatbox-answer-box {
-  background-color: #242424 !important;
-  border: 1px solid #424242 !important;
+  background-color: #141414 !important;
+  border: 1px solid #68686860 !important;
   border-radius: 4px !important;
   box-shadow: none !important;
   color: #fff !important;
   padding: 20px;
   margin: 10px 0;
 }
-
 .spinner .spinner-grow:nth-child(1) {
   animation-delay: 0.5s;
 }
@@ -174,30 +165,55 @@ const copyAnswer = () => {
   animation-delay: 0.1s;
 }
 
-.chatbox-answer-box-item-content-text {
-  white-space: pre-wrap;
+.chatbox-answer-box-item-content ::v-deep(p) {
+  margin: 0;
+}
+
+.chatbox-answer-box-item-content ::v-deep(pre) {
+  white-space: pre-wrap !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+  padding: 1rem !important;
+  border-radius: 0.3rem !important;
+  background-color: #202020 !important;
+ 
+}
+
+.chatbox-answer-box-item-content ::v-deep(code span) {
+  font-family: 'Courier New', Courier, monospace !important;
+  white-space: pre-wrap !important;
+  background-color: #202020 !important;
+}
+.chatbox-answer-box-item-content ::v-deep(code) {
+  font-family: 'Courier New', Courier, monospace !important;
+  white-space: pre-wrap !important;
+  background-color: #202020 !important;
+  color: #dbdbdb !important;
+  border-radius: 0.3rem !important;
+  padding: 2px;
 }
 
 .chatbox-answer-box-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 .chatbox-answer-box-item-icon {
   cursor: pointer;
   padding: 5px;
   border-radius: 5px;
-  background-color: #4e4e4e;
+  background-color: #202020;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #686868;
+  border: 1px solid #68686860;
   gap: 5px;
 }
 
 .chatbox-answer-box-item-icon:hover {
-  background-color: #686868;
+  background-color: #68686860;
 }
 
 .chatbox-answer-box-item-icon img {
@@ -211,7 +227,6 @@ const copyAnswer = () => {
   bottom: 0;
   width: 100%;
   text-align: center;
-
 }
 
 </style>

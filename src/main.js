@@ -1,19 +1,20 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
 
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 
 import VueWriter from "vue-writer";
 
-import './assets/main.css'
+import './assets/main.css';
 
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
-import axios from 'axios'
-axios.defaults.baseURL = 'https://chat-cortex-server.vercel.app/'
+import axios from 'axios';
+// axios.defaults.baseURL = 'https://chat-cortex-server.vercel.app/'
+axios.defaults.baseURL = 'http://localhost:3000/';
 
 const app = createApp(App)
 
